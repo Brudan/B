@@ -261,7 +261,6 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 		switch (item.getItemId()) {
 	    case R.id.menu_about:
 	        intent = new Intent(this, AboutActivity.class);
-//	        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	        startActivity(intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 	        return true;
 	    case R.id.menu_map:
@@ -270,7 +269,6 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 	    case R.id.menu_home:
 	    	intent = new Intent(this, HomeActivity.class);
 	    	startActivity(intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-	    	startActivity(intent);
 	        return true;
 	    default:
 	        return super.onOptionsItemSelected(item);

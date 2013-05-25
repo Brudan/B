@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,10 @@ public class HomeActivity extends Activity{
 				"Just enter in your Location and destination,the app will do the rest.<br />"));
 		TextView tv2 = (TextView)findViewById(R.id.start);
 		tv2.setText(MainActivity.message);
+		
+		AutoCompleteTextView autoCompView = (AutoCompleteTextView) findViewById(R.id.end);
+	    autoCompView.setAdapter(new PlacesAutoCompleteAdapter(this, R.layout.list_item));
+
 	}
 	
 	@Override
@@ -36,12 +41,10 @@ public class HomeActivity extends Activity{
 	    case R.id.menu_about:
 	    	intent = new Intent(this, AboutActivity.class);
 	    	startActivity(intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-	    	startActivity(intent);
 	        return true;
 	    case R.id.menu_map:
 	    	intent = new Intent(this, MainActivity.class);
 	    	startActivity(intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-	    	startActivity(intent);
 	        return true;
 	    case R.id.menu_home:
 	    	Toast.makeText(this, item.getTitle(), Toast.LENGTH_LONG).show();

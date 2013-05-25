@@ -43,12 +43,10 @@ public class AboutActivity extends Activity{
 	    case R.id.menu_map:
 	    	intent = new Intent(this, MainActivity.class);
 	    	startActivity(intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-	    	startActivity(intent);
 	        return true;
 	    case R.id.menu_home:
 	    	intent = new Intent(this, HomeActivity.class);
 	    	startActivity(intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-	    	startActivity(intent);
 	        return true;
 	    default:
 	        return super.onOptionsItemSelected(item);

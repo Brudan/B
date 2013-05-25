@@ -19,13 +19,12 @@
         android:ems="10" 
         android:inputType="text"/>
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/end"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:ems="10" 
-        android:inputType="text"/>
+        android:ems="10"/>
 
     <Button
         android:id="@+id/calc_button"
