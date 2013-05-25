@@ -40,6 +40,16 @@
             </intent-filter>
         </activity>
         
+        <activity
+            android:name="com.brudan.bodapay.AboutActivity"
+            android:label="@string/menu_about" >
+        </activity>
+        
+        <activity
+            android:name="com.brudan.bodapay.HomeActivity"
+            android:label="@string/menu_home" >
+        </activity>
+        
         <meta-data
     		android:name="com.google.android.maps.v2.API_KEY"
     		android:value="AIzaSyAUBTsU4lNp0E1PZ33jg7yeVTx6yXG8bUc"/>
