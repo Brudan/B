@@ -6,11 +6,14 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class HomeActivity extends Activity{
+public class HomeActivity extends Activity implements OnItemClickListener{
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -24,8 +27,13 @@ public class HomeActivity extends Activity{
 		
 		AutoCompleteTextView autoCompView = (AutoCompleteTextView) findViewById(R.id.end);
 	    autoCompView.setAdapter(new PlacesAutoCompleteAdapter(this, R.layout.list_item));
-
+	    autoCompView.setOnItemClickListener(this);
 	}
+	
+	public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+        String str = (String) adapterView.getItemAtPosition(position);
+        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+    }
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
