@@ -124,8 +124,9 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 	        	LatLng latLng = new LatLng(latitude, longitude);
 	        	googleMap.clear();
 	        	marker = googleMap.addMarker(new MarkerOptions().position(latLng));
-	        	String json = jParser.getJSONFromUrl(makeURL(mLocation.getLatitude(), mLocation.getLongitude(), latitude, longitude));
-	        	drawPath(json);
+//	        	String json = jParser.getJSONFromUrl(makeURL(mLocation.getLatitude(), mLocation.getLongitude(), latitude, longitude));
+	        	(new connectAsyncTask(makeURL(mLocation.getLatitude(), mLocation.getLongitude(), latitude, longitude))).execute();
+//	        	drawPath(json);
 //	        	googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 //	    		googleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
 			} catch (IOException e) {
@@ -134,7 +135,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 			}
         	
         }
-        Toast.makeText(this, dAddress, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, dAddress, Toast.LENGTH_SHORT).show();
     }
 	
 	public void moveTheCamera(Location location){
