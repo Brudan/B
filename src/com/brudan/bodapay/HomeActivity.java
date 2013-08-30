@@ -7,31 +7,44 @@ import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class HomeActivity extends Activity implements OnItemClickListener{
+	AutoCompleteTextView autoCompView;
+	TextView tv, tv2;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
-		TextView tv = (TextView)findViewById(R.id.home_intro);
+		tv = (TextView)findViewById(R.id.home_intro);
 		tv.setText(Html.fromHtml("BodaPay is a mobile app that helps you estimate the " +
 				"cost of your intended journey while using Boda Bodas <br/>" +
 				"Just enter in your Location and destination,the app will do the rest.<br />"));
-		TextView tv2 = (TextView)findViewById(R.id.start);
+		tv2 = (TextView)findViewById(R.id.start);
 		tv2.setText(MainActivity.message);
+		Button calc = (Button)findViewById(R.id.calc_button);
 		
-		AutoCompleteTextView autoCompView = (AutoCompleteTextView) findViewById(R.id.end);
+		
+		autoCompView = (AutoCompleteTextView) findViewById(R.id.end);
 	    autoCompView.setAdapter(new PlacesAutoCompleteAdapter(this, R.layout.list_item));
 	    autoCompView.setOnItemClickListener(this);
+	    
+	    calc.setOnClickListener(new OnClickListener(){
+			public void onClick(View v) {
+		        finish();
+		    }
+		});
 	}
 	
 	public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         String str = (String) adapterView.getItemAtPosition(position);
+        MainActivity.dAddress = str;
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
     }
 	

@@ -85,8 +85,7 @@ public class PlacesAutoCompleteAdapter extends ArrayAdapter<String> implements F
             // Extract the Place descriptions from the results
             resultList = new ArrayList<String>(predsJsonArray.length());
             for (int i = 0; i < predsJsonArray.length(); i++) {
-                resultList.add(predsJsonArray.getJSONObject(i).getString(
-                        "description"));
+                resultList.add(predsJsonArray.getJSONObject(i).getString("description"));
             }
 
         } catch (JSONException e) {
