@@ -55,6 +55,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
     private ProgressBar mActivityIndicator;
     private Marker marker;
     JSONParser jParser = new JSONParser();
+    private int distance;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -129,6 +130,8 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 //	        	drawPath(json);
 //	        	googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 //	    		googleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+	        	String str = "Your journey should cost approx. Ugx " + (int)(distance*700*0.000621371);
+	        	mAddress.setText(str);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -157,7 +160,7 @@ public class MainActivity extends FragmentActivity implements LocationListener {
         urlString.append(Double.toString( destlat));
         urlString.append(",");
         urlString.append(Double.toString( destlog));
-        urlString.append("&sensor=false&mode=driving&alternatives=true");
+        urlString.append("&sensor=false&mode=walking&alternatives=true");
         return urlString.toString();
 	}
 	
@@ -169,6 +172,17 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 	           JSONArray routeArray = json.getJSONArray("routes");
 	           JSONObject routes = routeArray.getJSONObject(0);
 	           JSONObject overviewPolylines = routes.getJSONObject("overview_polyline");
+	           JSONObject leg = routes.getJSONArray("legs").getJSONObject(0);
+	           JSONArray steps = leg.getJSONArray("steps");
+	           int numSteps = steps.length();
+	           distance = 0;
+	           for (int i = 0; i < numSteps; i++) {
+                   //Get the individual step
+                   final JSONObject step = steps.getJSONObject(i);
+                   final int length = step.getJSONObject("distance").getInt("value");
+                   distance += length;
+	           }
+	           
 	           String encodedString = overviewPolylines.getString("points");
 	           List<LatLng> list = decodePoly(encodedString);
 
